@@ -5,18 +5,23 @@ import { lusitana } from '@/app/ui/fonts';
 import { Suspense } from 'react';
 import { RevenueChartSkeleton, LatestInvoicesSkeleton, CardsSkeleton } from '@/app/ui/skeletons';
 import { Metadata } from 'next';
+import HealthCheck from './health-check';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
 };
  
 export default async function Page() {
-
   return (
     <main>
-      <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
-        Dashboard
-      </h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className={`${lusitana.className} text-xl md:text-2xl`}>
+          Dashboard
+        </h1>
+        <Suspense fallback={<div className="text-xs text-gray-400">Checking...</div>}>
+          <HealthCheck />
+        </Suspense>
+      </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <Suspense fallback={<CardsSkeleton />}>
           <CardWrapper />
