@@ -5,7 +5,7 @@ export default async function HealthCheck() {
     const data = await fetchCardData();
     return (
       <div className="text-xs text-green-600">
-        Database: Connected ✓
+        Database: Connected ✓ Data: {!!data ? '✅' : '❌'}
       </div>
     );
   } catch (error) {
